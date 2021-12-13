@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mökkiarvontakone</title>
+
+ <style type="text/css">
+	label { 
+			display: block;
+			width: 5em;
+			float: left; 
+	}
+</style>
+
+</head>
+<body>
+    <form>
+        <h3>Lisää nimet arvontaan ja arvo voittaja.</h3>
+        <input type="text" id="nimi" size="15">
+        <input type="button" value="Lisää arvontaan" onclick=lisaanimi()>
+        <input type="button" value="Arvo voittaja" onclick=arvovoittaja()>
+    </form>
+    <p>
+    <div id="nimet"></div>
+    </p>
+    <p>
+    <div id="voittaja"></div>
+    </p>
+    <script>
+
+            var nimet = [];
+            var teksti = "";
+
+        function lisaanimi (){
+            nimet.push(" " + document.getElementById("nimi").value);
+            document.getElementById("nimi").value = "";
+            
+            for (i = 0; i < nimet.length; i++){
+                teksti = nimet[i]
+            }
+            document.getElementById("nimet").innerHTML = "<p>Osallistujat: " + nimet;
+            }
+        
+        function arvovoittaja (){
+            var voittaja = Math.floor(Math.random() * nimet.length);
+            var tulos = "";
+
+            if(nimet.length < 2){
+                alert("Lisää enemmän osallistujia. Olet syöttänyt vain " + nimet.length + " osallistujaa")
+                tulos = "Voittajaa ei voida arpoa."
+            } else {
+                tulos = "Voittaja on: " + nimet[voittaja]; + ".";
+            }
+
+            document.getElementById("voittaja").innerHTML = tulos
+            }
+        
+           
+        
+    </script>
+</body>
+</html>
